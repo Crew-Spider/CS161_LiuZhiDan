@@ -1,0 +1,12 @@
+from bs4 import BeautifulSoup
+from urllib.request import urlopen
+import requests
+base_url="https://www.thebump.com/real-answers/v1/topics/233/questions"
+param={'include_user':'true','page_num':1,'page_size':18}
+r=requests.get(base_url,params=param).json()
+t=r["total"]
+param={'include_user':'true','page_num':1,'page_size':t}
+r=requests.get(base_url,params=param).json()
+for l in r["questions"]:
+    print(l["title"])
+
